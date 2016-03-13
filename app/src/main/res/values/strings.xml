@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ADesafio2</string>
+    <string name="tv_fragment_one">Linear Layout | Counter : %1$d</string>
+    <string name="tv_fragment_two">Linear Layout | Counter : %1$d</string>
+    <string name="tv_fragment_three">Linear Layout | Counter : %1$d</string>
+    <string name="linear_layout_label">Linear Layout | Counter : 0</string>
+    <string name="table_layout_label">Table Layout | Counter : 0</string>
+</resources>
