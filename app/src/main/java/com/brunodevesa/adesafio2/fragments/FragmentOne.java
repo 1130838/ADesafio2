@@ -67,7 +67,6 @@ public class FragmentOne extends Fragment{
 
             if (!isVisibleToUser) {
                 Log.d("MyFragment", "Not visible anymore. ");
-                // TODO stop audio playback
                 counter_fragment_one--;
             }
         }

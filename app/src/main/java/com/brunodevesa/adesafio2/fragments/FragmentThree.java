@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.brunodevesa.adesafio2.R;
 
@@ -47,6 +51,7 @@ public class FragmentThree extends Fragment {
         things.add("First thing");
         adapter = new ArrayAdapter<>(this.mContext, android.R.layout.simple_list_item_1, things);
 
+
     }
 
 
@@ -60,6 +65,8 @@ public class FragmentThree extends Fragment {
         tv_fragment_three = (TextView) view.findViewById(R.id.tv_fragment_three);
 
         mListView.setAdapter(adapter);
+
+        registerForContextMenu(mListView); // importante o registo !!
 
         return view;
 
@@ -91,7 +98,6 @@ public class FragmentThree extends Fragment {
 
             if (!isVisibleToUser) {
                 Log.d("MyFragment", "Not visible anymore.");
-                // TODO stop audio playback
                 counter_fragment_three--;
                 things.remove(counter_fragment_three);
             }
@@ -109,5 +115,32 @@ public class FragmentThree extends Fragment {
     public static FragmentThree newInstance() {
         return new FragmentThree();
     }
+
+
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()) {
+            case R.id.share:
+                Toast.makeText(mContext, "Sharing", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.delete:
+                Toast.makeText(mContext, "Deleting", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+
+        getActivity().getMenuInflater().inflate(R.menu.context_menu, menu);
+    }
+
+
+
 
 }
